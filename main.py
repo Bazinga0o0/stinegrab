@@ -69,13 +69,10 @@ def checkverfügbar(anmelden : bool):
     while True:
         driver = webdriver.Chrome()
 
-        # Öffnen Sie die Website im Browser
         driver.get(url)
 
-        # Rufen Sie den HTML-Code der Website ab
         html_code = driver.page_source
 
-        # Schließen Sie den Browser
         button = driver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div[6]/div[2]/div/a[1]')
         button.click()
         time.sleep(1)
@@ -117,9 +114,6 @@ def checkverfügbar(anmelden : bool):
             else:
                 print('Neue Plätze')
                 if anmelden:
-                    #time.sleep(10)
-                    #table = driver.find_element(By.CSS_SELECTOR, "input.checkBox")
-                    #table.click()
                     time.sleep(1)
                     button = driver.find_element(By.NAME, 'Next')
                     button.click()
