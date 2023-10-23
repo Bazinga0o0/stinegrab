@@ -81,9 +81,9 @@ def checkverfügbar(anmelden : bool):
         time.sleep(1)
 
         us = driver.find_element(By.ID, 'Username')
-        us.send_keys('hier Benutzername einfügen')
+        us.send_keys(input('hier Benutzername einfügen: '))
         pw = driver.find_element(By.ID, 'Password')
-        pw.send_keys('hier Passwort einfügen')
+        pw.send_keys(input('hier Passwort einfügen: '))
         button= driver.find_element(By.NAME, 'button')
         try:
             button.click()
