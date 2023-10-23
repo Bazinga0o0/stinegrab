@@ -40,7 +40,7 @@ itanList = """001 575029
 034 812915
 040 203920
 046 869803
-052191526
+052 191526
 058 242107
 005 099328
 011 397851
@@ -81,9 +81,9 @@ def checkverfügbar(anmelden : bool):
         time.sleep(1)
 
         us = driver.find_element(By.ID, 'Username')
-        us.send_keys('BBB7113')
+        us.send_keys('hier Benutzername einfügen')
         pw = driver.find_element(By.ID, 'Password')
-        pw.send_keys('Rexpu8l!x')
+        pw.send_keys('hier Passwort einfügen')
         button= driver.find_element(By.NAME, 'button')
         try:
             button.click()
