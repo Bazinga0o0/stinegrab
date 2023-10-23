@@ -1,6 +1,7 @@
 import time
 from selenium import webdriver
-
+import smtplib
+from email.mime.text import MIMEText
 url = 'https://stine.uni-hamburg.de/scripts/mgrqispi.dll?APPNAME=CampusNet&PRGNAME=EXTERNALPAGES&ARGUMENTS=-N000000000000001,-N000265,-Astartseite'
 itanList = """001 575029
 007 466741
@@ -52,12 +53,10 @@ itanList = """001 575029
 047 788771
 053 211547
 059 741453"""
-# Starten Sie den Chrome-Browser
 
-# Split the ITAN list into lines
+
 itan_lines = itanList.split('\n')
 
-# Search for the string "\n007" in each line
 def findItan(itan):
     for line in itan_lines:
         if line.find(itan) != -1:
@@ -65,13 +64,12 @@ def findItan(itan):
                 return line[4:]
     print('done')   
 from selenium.webdriver.common.by import By
-def checkverfügbar(anmelden : bool):
+def checkverfügbar(anmelden : bool, send_email : bool):
     while True:
         driver = webdriver.Chrome()
 
         driver.get(url)
 
-        html_code = driver.page_source
 
         button = driver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div[6]/div[2]/div/a[1]')
         button.click()
@@ -113,7 +111,7 @@ def checkverfügbar(anmelden : bool):
                 print('Keine neuen Plätze')
             else:
                 print('Neue Plätze')
-                if anmelden:
+                """if anmelden:
                     time.sleep(1)
                     button = driver.find_element(By.NAME, 'Next')
                     button.click()
@@ -130,8 +128,16 @@ def checkverfügbar(anmelden : bool):
                     button = driver.find_element(By.NAME, 'campusnet_submit')
                     #button.click()
                     
-                    time.sleep(20)
+                    time.sleep(20)"""
             driver.refresh()
             time.sleep(20)
     print('done')
-checkverfügbar(True)
+#checkverfügbar(True)
+"""msg = MIMEText('Neue Plätze verfügbar!')
+msg['Subject'] = 'Neue Plätze verfügbar'
+msg['From'] = ''
+msg['To'] = ''   
+with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+    smtp.starttls()
+    smtp.login('', '')
+    smtp.send_message(msg)"""
