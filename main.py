@@ -111,6 +111,7 @@ def checkverfügbar(anmelden : bool, send_email : bool):
                 print('Keine neuen Plätze')
             else:
                 print('Neue Plätze')
+                #hier Einfügen
                 """if anmelden:
                     time.sleep(1)
                     button = driver.find_element(By.NAME, 'Next')
@@ -133,11 +134,3 @@ def checkverfügbar(anmelden : bool, send_email : bool):
             time.sleep(20)
     print('done')
 #checkverfügbar(True)
-"""msg = MIMEText('Neue Plätze verfügbar!')
-msg['Subject'] = 'Neue Plätze verfügbar'
-msg['From'] = ''
-msg['To'] = ''   
-with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-    smtp.starttls()
-    smtp.login('', '')
-    smtp.send_message(msg)"""
